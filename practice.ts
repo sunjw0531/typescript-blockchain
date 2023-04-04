@@ -1,22 +1,14 @@
-// ts code
-const user = {
-  nickname: 'paul',
-};
+// typescript infer the type (Implicit Types)
+let a = 'hello';
+// specify the type (Explicit Types)
+let b: boolean = true;
 
-// wrong ts code
-user.hello();
+let c: number[] = [];
+c.push(1);
 
-// wrong ts code
-[1, 2, 3, 4] + false;
-
-// wrong ts code
-function divide(a, b) {
-  return a / b;
-}
-divide('adsf');
-
-// wrong ts code
 const player = {
-  age: 12,
+  name: 'paul',
 };
-player.age = false;
+player.name = 'zxcv';
+// type error
+player.hello();

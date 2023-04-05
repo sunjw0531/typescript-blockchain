@@ -1,14 +1,28 @@
-// typescript infer the type (Implicit Types)
-let a = 'hello';
-// specify the type (Explicit Types)
-let b: boolean = true;
+// optional type
+type Player = {
+  name: string;
+  age?: number;
+};
 
-let c: number[] = [];
-c.push(1);
-
-const player = {
+const player: Player = {
   name: 'paul',
 };
-player.name = 'zxcv';
-// type error
-player.hello();
+
+const playerJohn: Player = {
+  name: 'john',
+  age: 12,
+};
+
+// function return type
+function playerMaker(name: string): Player {
+  return {
+    name,
+  };
+}
+
+const playerMaker2 = (name: string): Player => {
+  return { name };
+};
+
+const zon = playerMaker('zon');
+zon.age = 12;

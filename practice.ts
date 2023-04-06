@@ -1,28 +1,29 @@
-// optional type
+// readonly
 type Player = {
-  name: string;
+  readonly name: string;
   age?: number;
 };
 
-const player: Player = {
-  name: 'paul',
-};
-
-const playerJohn: Player = {
-  name: 'john',
-  age: 12,
-};
-
-// function return type
 function playerMaker(name: string): Player {
   return {
     name,
   };
 }
 
-const playerMaker2 = (name: string): Player => {
-  return { name };
-};
-
 const zon = playerMaker('zon');
 zon.age = 12;
+
+// readonly error
+zon.name = 'on';
+
+// tuple
+const player: [string, number, boolean] = ['paul', 1, true];
+const player2: readonly [string, number, boolean] = ['paul', 1, true];
+
+// undefined, null, any
+let a: undefined = undefined;
+let b: null = null;
+let c: any[] = [];
+let d: any = true;
+c + d; // not error
+a + b; // error

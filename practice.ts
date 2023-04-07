@@ -1,29 +1,31 @@
-// readonly
-type Player = {
-  readonly name: string;
-  age?: number;
-};
+// unknown
+let a: unknown;
 
-function playerMaker(name: string): Player {
-  return {
-    name,
-  };
+if (typeof a === 'number') {
+  let b = a + 1;
 }
 
-const zon = playerMaker('zon');
-zon.age = 12;
+if (typeof a === 'string') {
+  let c = a.toUpperCase();
+}
 
-// readonly error
-zon.name = 'on';
+// void (nothing return)
+function hello() {
+  console.log('x');
+}
 
-// tuple
-const player: [string, number, boolean] = ['paul', 1, true];
-const player2: readonly [string, number, boolean] = ['paul', 1, true];
+// never (function never return)
+function hi(name: string): never {
+  throw new Error(name);
+}
 
-// undefined, null, any
-let a: undefined = undefined;
-let b: null = null;
-let c: any[] = [];
-let d: any = true;
-c + d; // not error
-a + b; // error
+function helloo(name: string | number) {
+  if (typeof name === 'string') {
+    name;
+  } else if (typeof name === 'number') {
+    name;
+  } else {
+    // never type
+    name;
+  }
+}

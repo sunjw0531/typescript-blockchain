@@ -1,31 +1,5 @@
-// unknown
-let a: unknown;
+// const add = (a: number, b: number) => a + b;
+// make a function call signature
+type Add = (a: number, b: number) => number;
 
-if (typeof a === 'number') {
-  let b = a + 1;
-}
-
-if (typeof a === 'string') {
-  let c = a.toUpperCase();
-}
-
-// void (nothing return)
-function hello() {
-  console.log('x');
-}
-
-// never (function never return)
-function hi(name: string): never {
-  throw new Error(name);
-}
-
-function helloo(name: string | number) {
-  if (typeof name === 'string') {
-    name;
-  } else if (typeof name === 'number') {
-    name;
-  } else {
-    // never type
-    name;
-  }
-}
+const add: Add = (a, b) => a + b;

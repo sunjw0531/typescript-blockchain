@@ -1,37 +1,28 @@
-type Add = {
-  (a: number, b: number): number;
-  (a: number, b: string): number;
+type SuperPrint = {
+  // // 3 call signatures of concrete type
+  // (arr: number[]): void;
+  // (arr: boolean[]): void;
+  // (arr: string[]): void;
+
+  // <generic Type name> : typescript know that this
+  // call signature is going to receive generic
+  // <TypePlaceholder>(arr : TypePlaceholder[]) : void
+  <T>(arr: T[]): T;
 };
 
-const add: Add = (a, b) => {
-  if (typeof b === 'string') return a;
-  return a + b;
-};
+// const SuperPrint: SuperPrint = (arr) => {
+//   arr.forEach((i) => console.log(i));
+// };
+const SuperPrint: SuperPrint = (arr) => arr[0];
 
-type Config = {
-  path: string;
-  state: object;
-};
-type Push = {
-  (path: string): void;
-  (obj: Config): void;
-};
-const push: Push = (config) => {
-  if (typeof config === 'string') console.log(config);
-  else {
-    console.log(config.path);
-  }
-};
+// SuperPrint([1, 2, 3, 4]);
+// SuperPrint([true, false, true]);
+// SuperPrint(['asdf']);
+// //err before but now it's ok
+// SuperPrint([1, 2, true, false]);
 
-// different parameter count
-type Add1 = {
-  (a: number, b: number): number;
-  (a: number, b: number, c: number): number;
-};
-const add1: Add1 = (a, b, c?: number) => {
-  if (c) return a + b + c;
-  return a + b;
-};
-
-add1(1, 2);
-add1(1, 2, 3);
+const a = SuperPrint([1, 2, 3, 4]);
+const b = SuperPrint([true, false, true]);
+const c = SuperPrint(['asdf']);
+//err before but now it's ok
+const d = SuperPrint([1, 2, true, false]);

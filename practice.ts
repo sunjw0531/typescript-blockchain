@@ -1,26 +1,32 @@
-// generic type
-type SuperPrint = <T>(arr: T[]) => T;
+function superPrint<V>(a: V[]) {
+  return a[0];
+}
 
-const SuperPrint: SuperPrint = (arr) => arr[0];
+type Player<T> = {
+  name: string;
+  extraInfo: T;
+};
 
-const a = SuperPrint([1, 2, 3, 4]);
-const b = SuperPrint([true, false, true]);
-const c = SuperPrint(['asdf']);
-//err before but now it's ok
-const d = SuperPrint([1, 2, true, false]);
-// err
-d.toUpperCase();
+// extend
+// type manPlayer = Player<{favFood : string}>
+type manExtra = {
+  favFood: string;
+};
+type manPlayer = Player<manExtra>;
+const man: manPlayer = {
+  name: 'man',
+  extraInfo: { favFood: 'ramen' },
+};
 
-/////////////////////////////////////
-// any has problem
-type SuperPrint1 = (arr: any[]) => any;
-const SuperPrint1: SuperPrint1 = (a) => a[0];
-const e = SuperPrint1([1, 2, true, false]);
-// problem here, typescript do not return the error
-e.toUpperCase();
+const man1: Player<null> = {
+  name: 'man1',
+  extraInfo: null,
+};
 
-/////////////////////////////////////
-// multi generic
-type SuperPrint2 = <T, M>(a: T[], b: M) => T;
-const SuperPrint2: SuperPrint2 = (a) => a[0];
-const f = SuperPrint2([1, 2, 3, 4], 'x');
+type A = Array<number>;
+let a: A = [1, 2, 3, 4];
+
+function printAllNumbers(arr: Array<number>) {}
+
+// in react
+useState<number>();

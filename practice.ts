@@ -1,32 +1,32 @@
-function superPrint<V>(a: V[]) {
-  return a[0];
+abstract class User {
+  constructor(
+    // private do not allow to use the field outside of the class
+    private firstName: string,
+    private lastName: string,
+    // public nickname: string
+    // protected allow to use the field in class and sub classes.
+    // protected nickname : string
+    private nickname: string
+  ) {}
+  // abstract method
+  abstract getNickName(): void;
+
+  getFullName() {
+    return `${this.firstName} ${this.lastName}`;
+  }
+
+  // private getFullName() {
+  //   return `${this.firstName} ${this.lastName}`;
+  // }
 }
 
-type Player<T> = {
-  name: string;
-  extraInfo: T;
-};
+class Player extends User {
+  getNickName(): void {
+    // cannot
+    console.log(this.nickname);
+  }
+}
 
-// extend
-// type manPlayer = Player<{favFood : string}>
-type manExtra = {
-  favFood: string;
-};
-type manPlayer = Player<manExtra>;
-const man: manPlayer = {
-  name: 'man',
-  extraInfo: { favFood: 'ramen' },
-};
+const man = new Player('man', 'las', 'nick');
 
-const man1: Player<null> = {
-  name: 'man1',
-  extraInfo: null,
-};
-
-type A = Array<number>;
-let a: A = [1, 2, 3, 4];
-
-function printAllNumbers(arr: Array<number>) {}
-
-// in react
-useState<number>();
+man.getFullName();

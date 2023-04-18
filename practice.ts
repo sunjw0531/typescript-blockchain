@@ -22,14 +22,19 @@ class Dict {
       ? (this.words[newWord.term] = newWord.def)
       : console.log('No word');
   }
+  // static method
+  static hello() {
+    return 'hello';
+  }
 }
 
 class Word {
-  constructor(public term: string, public def: string) {}
+  // readonly protects term and def from trying to change
+  constructor(public readonly term: string, public readonly def: string) {}
 }
 
 const food = new Word('kimchi', '김치');
-
+food.def = 'readonly때문에 변경이 안됨';
 const dict = new Dict();
 
 dict.add(food);
@@ -40,3 +45,5 @@ dict.def('kimchi');
 
 const newFoodDef = new Word('kimchi', '새로운 김치');
 dict.update(newFoodDef);
+
+Dict.hello();

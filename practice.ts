@@ -1,49 +1,85 @@
-// object type definition
-type Words = {
-  [key: string]: string;
+// type shape of an Object
+type Player = {
+  nickname: string;
+  healthBar: number;
 };
-// let dict : Words ={'potato' : 'food', 'pizza' : 'food'}
 
-class Dict {
-  private words: Words;
-  constructor() {
-    this.words = {};
-  }
-  add(word: Word) {
-    if (this.words[word.term] === undefined) {
-      this.words[word.term] = word.def;
-    }
-  }
-  def(term: string) {
-    return this.words[term];
-  }
-  update(newWord: Word) {
-    return this.words[newWord.term]
-      ? (this.words[newWord.term] = newWord.def)
-      : console.log('No word');
-  }
-  // static method
-  static hello() {
-    return 'hello';
-  }
+const man: Player = {
+  nickname: 'man',
+  healthBar: 10,
+};
+
+// type
+type Food = string;
+
+const soup: Food = 'delicious';
+
+// type alias(대체명)
+type Nickname = string;
+type Health = number;
+type Friends = Array<string>;
+type Player1 = {
+  nickname: Nickname;
+  healthBar: Health;
+};
+
+// type with specific option (concrete type)
+type Team = 'red' | 'blue' | 'yellow';
+type Health2 = 1 | 5 | 10;
+type Player2 = {
+  nickname: string;
+  team: Team;
+  health: Health2;
+};
+const man2: Player2 = {
+  nickname: 'man2',
+  team: 'yellow',
+  health: 1,
+};
+
+//////////////////////////////////////////
+// interface only specify the shape of Object
+interface Player3 {
+  nickname: string;
+  team: Team;
+  health: Health2;
 }
 
-class Word {
-  // readonly protects term and def from trying to change
-  constructor(public readonly term: string, public readonly def: string) {}
+const man3: Player3 = {
+  nickname: 'man2',
+  team: 'yellow',
+  health: 1,
+};
+
+// interface extends
+interface User {
+  readonly name: string;
 }
+interface Player4 extends User {}
+const man4: Player4 = {
+  name: 'man4',
+};
+// err
+man4.name = 'asdf';
 
-const food = new Word('kimchi', '김치');
-food.def = 'readonly때문에 변경이 안됨';
-const dict = new Dict();
+// if it was a type?
+type User1 = {
+  name: string;
+};
+type Player5 = User1 & {};
 
-dict.add(food);
-// words = {'kimchi' : '김치'}
-
-dict.def('kimchi');
-// 김치
-
-const newFoodDef = new Word('kimchi', '새로운 김치');
-dict.update(newFoodDef);
-
-Dict.hello();
+// interface can stack the different properties in same interfaces
+interface User6 {
+  name: string;
+}
+interface User6 {
+  lastName: string;
+}
+interface User6 {
+  health: Number;
+}
+const newUser: User6 = {
+  name: 'man',
+  lastName: 'hey',
+  health: 3,
+};

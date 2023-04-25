@@ -106,6 +106,10 @@
 
     /* Completeness */
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
-    "skipLibCheck": true /* Skip type checking all .d.ts files. */
+    "skipLibCheck": true /* Skip type checking all .d.ts files. */,
+
+    // lib : explain to typescript what APIs we are going to be using
+    // and where is the code going to be running (target runtime environment)
+    "lib": ["ES6"]
   }
 }

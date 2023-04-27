@@ -110,6 +110,7 @@
 
     // lib : explain to typescript what APIs we are going to be using
     // and where is the code going to be running (target runtime environment)
-    "lib": ["ES6", "DOM"]
+    "lib": ["ES6", "DOM"],
+    "allowJs": true
   }
 }

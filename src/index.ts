@@ -1,1 +1,2 @@
-import { init, exit, example } from './myPackage.js';
+'use strict';
+console.log('hi');

@@ -15,6 +15,7 @@
     "typescript": "^5.0.4"
   },
   "dependencies": {
+    "@types/node": "^18.16.3",
     "nodemon": "^2.0.22"
   }
 }
